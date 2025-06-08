@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(datos => {
-            rederNoticias(datos);
+            renderNoticias(datos);
         })
         .catch(error => {
             console.error('Error cargando noticias: ', error);
