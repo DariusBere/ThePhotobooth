@@ -60,6 +60,5 @@ function mostrarError(mensaje) {
     const aviso = document.createElement('div');
     aviso.className = 'alert alert-danger';
     aviso.textContent = mensaje;
-
     seccion.prepend(aviso);
 }
