@@ -1,0 +1,252 @@
+/* Variables propios */
+
+:root {
+    --color-primary: #ff6f61;
+    --color-secondary: #4a4a4a;
+    --color-light-bg: #f9f9f9;
+    --color-accent: #ffc107;
+    --font-base: 'Open Sans', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
+}
+
+/* ======================================================================================================================================================================================
+======================================================================================================================================================================================
+ Tipografia global 
+======================================================================================================================================================================================
+ ======================================================================================================================================================================================*/
+
+body {
+    font-family: var(--font-base);
+    color: var(--color-secondary);
+    background-image: linear-gradient(135deg, var(--color-light-bg), var(--color-primary));
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--color-light-bg);
+    text-shadow: -2px 2px var(--color-secondary);
+    margin-bottom: 1rem;
+}
+
+a, .navbar-brand {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+/* Header y Navigacion */
+
+#hero{
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)) ,url(../img/heroBanner.jpg);
+    background-size: 100%;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: transparent;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+header.sticky{
+    background: var(--color-light-bg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    margin-left: 1.2rem;
+    font-weight: 700;
+}
+
+.navbar-nav .nav-link {
+    color: var(--color-secondary);
+    margin-right: 1rem;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* Secciones */
+
+section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+#seccion-quien-soy p {
+    font-size: 1.1rem;
+}
+
+#seccion-quien-soy img {
+    width: 500px;               
+    height: auto;
+    border-radius: 0.5rem;      
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+#seccion-quien-soy img:hover {
+    transform: scale(1.02);
+}
+
+/* Seccion - "Mi Trabajo" */
+
+#mi-trabajo ul {
+    font-size: 1.1rem;
+}
+
+#mi-trabajo .list-group-item {
+    border: none;
+    padding: 0.75rem 1.25rem;
+    background: var(--color-light-bg);
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background 0.2s;
+}
+
+#mi-trabajo .list-group-item:hover {
+    background: var(--color-accent);
+    color: #fff;
+}
+
+#trabajo-preview {
+    position: relative;
+    height: 350px;
+    background: transparent;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+#trabajo-preview img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+#trabajo-preview img.visible {
+    opacity: 1;
+}
+
+/* Seccion Noticias - Cards */
+
+#lista-noticias .card {
+    border: none;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#lista-noticias .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Galeria - Imagenes */
+
+#lista-galeria img {
+    transition: transform 0.3s, filter 0.3s;
+}
+
+#lista-galeria img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* Testimonios */
+
+#testimonios .card {
+    border: none;
+    border-radius: 1rem;
+    background: var(--color-light-bg);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#testimonios .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+#testimonios .testimonial-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 2px solid var(--color-primary);
+}
+
+/* Formulario de presupuesto */
+
+#presupuesto form {
+    background: var(--color-light-bg);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+#presupuesto .form-label {
+    font-weight: 600;
+}
+
+#presupuesto .invalid-feedback {
+    font-size: 0.9rem;
+}
+
+/* Descuento */
+
+#descContainer p {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Resultado */
+
+#presupuesto #resultado {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+/* Footer */
+
+footer {
+    background: var(--color-light-bg);
+    padding: 1.5rem;
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+}
+
+/* Dark Mode */
+
+:root.dark-mode {
+    --color-primary: #ffa07a;
+    --color-secondary: #ddd;
+    --color-light-bg: #222;
+    --color-accent: #ff8c00;
+    background: #111;
+    color: #eee;
+}
+body.dark-mode {
+    background: var(--color-light-bg);
+    color: var(--color-secondary); 
+}
+
+header.dark-mode {
+    background: #333;
+}

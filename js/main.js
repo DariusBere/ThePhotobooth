@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error cargando noticias: ', error);
             mostrarError('No se pudieron cargar las noticias en este momento,');
         });
-    });
+});
 
 const contenedorNoiticias = document.getElementById('lista-noticias');
 
@@ -53,6 +53,7 @@ function renderNoticias(noticias) {
         col.appendChild(card);
         contenedorNoiticias.appendChild(col);
     });
+    
 }
 
 function mostrarError(mensaje) {
@@ -62,3 +63,30 @@ function mostrarError(mensaje) {
     aviso.textContent = mensaje;
     seccion.prepend(aviso);
 }
+
+// Navbar Sticky al hacer scroll
+
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 100) {
+        header.classList.add('sticky');
+    } else { 
+        header.classList.remove('sticky');
+    }
+});
+
+// Preview dinamico en 'Mi Trabajo'
+
+const trabajoItems = document.querySelectorAll('#lista-trabajo .list-group-item');
+const previewImg = document.getElementById('preview-imagen');
+const previewWrapper = document.getElementById('trabajo-preview');
+
+trabajoItems.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        previewImg.src = item.dataset.img;
+        previewImg.classList.add('visible');
+    });
+    item.addEventListener('mouseleave', () => {
+        previewImg.classList.remove('visible');
+    })
+})
