@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('form-presupuesto');
     const nombre = document.getElementById('nombre');
     const apellidos  = document.getElementById('apellidos');
     const telefono   = document.getElementById('telefono');
@@ -7,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const duracion = document.getElementById('duracion');
     const retoqueChk = document.getElementById('retoque');
     const revisiones = document.getElementById('revisiones');
+    const condCheck   = document.getElementById('acepto');
     const descContainer= document.getElementById('descContainer');
     const descuentoHoras = document.getElementById('descuento');
     const resultado = document.getElementById('resultado');
@@ -93,14 +95,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Eventos en tiempo real
-    [nombre, apellidos, telefono, email].forEach(element => 
-        element.addEventListener('input', validarYCalcular)
-    );
-    [tipoSesion, duracion, retoqueChk, revisiones].forEach(element => 
-        element.addEventListener('change', validarYCalcular)
-    );
+    [nombre, apellidos, telefono, email].forEach(element => element.addEventListener('input', validarYCalcular));
+    [tipoSesion, duracion, retoqueChk, revisiones].forEach(element => element.addEventListener('change', validarYCalcular));
 
+    /*
+    // Boton Submit. Despues de enviar el mailto, hacemos reset del formulario
+    form.addEventListener('submit', e => {
+        // validaciones
+        if(!validarYCalcular() || !condCheck.checked) {
+            if(!condCheck.checked) condCheck.classList.add('is-invalid');
+            e.preventDefault ();
+            return;
+        }
+        // tras enviar mailto, restear el formulario
+        setTimeout(() => {
+            form.reset();
+            validarYCalcular();
+            condCheck.classList.remove('is-invalid');
+        }, 100);
+    });
+*/
     // Calculo inicial
     validarYCalcular();
-
-})
+});
