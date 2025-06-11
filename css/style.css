@@ -4,7 +4,7 @@
     --color-primary: #e7d493;
     --color-secondary: #4a4a4a;
     --color-light-bg: #f9f9f9;
-    --color-accent: #ffc107;
+    --color-accent: #fd981d;
     --font-base: 'Open Sans', sans-serif;
     --font-heading: 'Montserrat', sans-serif;
 }
@@ -31,16 +31,20 @@ h1, h2, h3 {
 
 a, .navbar-brand {
     font-family: var(--font-heading);
-    color: var(--color-primary);
+    color: var(--color-accent);
 }
 
 a:hover {
     color: var(--color-accent);
 }
 
+
+button {
+    color: var(--color-accent);
+}
 /* ======================================================================================================================================================================================
 ======================================================================================================================================================================================
-Header y Navigacion 
+Hero, Header y Navigacion 
 ======================================================================================================================================================================================
 ====================================================================================================================================================================================== */
 
@@ -86,9 +90,21 @@ header.sticky{
 
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link:hover {
-    color: var(--color-primary);
+    color: var(--color-accent);
     font-weight: 600;
 }
+
+#logo-header {
+    height: 3.2rem;
+    width: 3.2rem;
+}
+
+#logo-footer {
+    height: 4rem;
+    width: 4rem;
+}
+
+
 
 /* ======================================================================================================================================================================================
 ======================================================================================================================================================================================
@@ -115,6 +131,7 @@ section {
 
 #seccion-quien-soy img:hover {
     transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 /* ======================================================================================================================================================================================
@@ -227,7 +244,7 @@ Testimonios
     width: 50px;
     height: 50px;
     object-fit: cover;
-    border: 2px solid var(--color-primary);
+    border: 2px solid var(--color-accent);
 }
 
 /* ======================================================================================================================================================================================
@@ -270,7 +287,7 @@ Resultado
 
 #presupuesto #resultado {
     font-size: 1.5rem;
-    color: var(--color-primary);
+    color: var(--color-accent);
     font-weight: 700;
 }
 
@@ -283,7 +300,11 @@ Footer
 footer {
     background: var(--color-light-bg);
     padding: 1.5rem;
-    color: var(--color-secondary);
-    font-size: 0.9rem;
+    font-size: 1.2rem;
+}
+
+footer a{
+    text-decoration: none;
+    color: var(--color-accent);
 }
 

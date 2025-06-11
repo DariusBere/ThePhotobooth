@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
+    <meta name="description" content="The Photo Booth: retratos, paisajes y eventos. Capturo instantes únicos con luz y emoción.">
+    <meta name="keywords" content="fotografía, portfolio, retrato, paisaje, eventos, fotógrafo">
+    <meta name="author" content="Darius-Mihai Berinde">
+    <meta name="robots" content="noindex, nofollow">
+  
     <title>Presupuesto - The Photo Booth</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../favicon.png">
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+
+    <!--Bootstrap Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"/>
 
     <!-- CSS -->
     <link href="../css/style.css" rel="stylesheet">
@@ -20,7 +28,10 @@
     <header>
         <!-- Navegacion -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="../index.html">The Photo Booth</a>
+            <a class="navbar-brand" href="../index.html">
+                <img src="/img/logo.png" alt="Logo" id="logo-header">
+                <span>The Photo Booth</span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navMenu" aria-controls="navMenu"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -42,33 +53,33 @@
             <!-- Datos de contacto -->
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" id="nombre" class="form-control" placeholder="Tu nombre">
+                <input type="text" id="nombre" class="form-control" placeholder="Tu nombre" required>
                 <div class="invalid-feedback">Solo letras (1-15).</div>
             </div>
             <div class="mb-3">
                 <label for="apellidos" class="form-label">Apellidos</label>
-                <input type="text" id="apellidos" class="form-control" placeholder="Tus apellidos">
+                <input type="text" id="apellidos" class="form-control" placeholder="Tus apellidos" required>
                 <div class="invalid-feedback">Solo letras (1-40).</div>
             </div>
             <div class="mb-3">
                 <label for="telefono" class="form-label">Telefono</label>
-                <input type="tel" id="telefono" class="form-control" placeholder="1-9 digitos">
+                <input type="tel" id="telefono" class="form-control" placeholder="1-9 digitos" required>
                 <div class="invalid-feedback">Solo digitos(1-9).</div>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Correo electronico</label>
-                <input type="email" id="email" class="form-control" placeholder="correo@ejemplo.com">
+                <input type="email" id="email" class="form-control" placeholder="correo@ejemplo.com" required>
                 <div class="invalid-feedback">Email invalido.</div>
             </div>
 
             <!-- Seleccion de sesion -->
             <div class="mb-3">
                 <label for="tipo-sesion" class="form-label">Tipo de sesion</label>
-                <select id="tipo-sesion" class="form-select">
+                <select id="tipo-sesion" class="form-select" required>
                     <option value="" disabled selected>Selecciona una opcion</option>
                     <option value="retrato" data-precio="100">Retrato - 100 €</option>
                     <option value="paisaje" data-precio="150">Paisaje - 150 €</option>
-                    <option value="moda"    data-precio="200">Moda - 200 €</option>
+                    <option value="boda"    data-precio="350">Boda - 350 €</option>
                 </select>
                 <div class="invalid-feedback">Elige un tipo de sesion.</div>
             </div>
@@ -76,7 +87,7 @@
             <!-- Duracion de la sesion -->
             <div class="mb-3">
                 <label for="duracion" class="form-label">Duracion (horas)</label>
-                <input type="number" id="duracion" class="form-control" min="1" placeholder="Horas">
+                <input type="number" id="duracion" class="form-control" min="1" placeholder="Horas" required>
                 <div class="invalid-feedback">Introduce un numero de horas valido (≥ 1).</div>
             </div>
 
@@ -85,7 +96,7 @@
                 <legend class="col-form-label pt-0">Extras</legend>
 
                 <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" id="retoque" value="50">
+                    <input class="form-check-input" type="checkbox" id="retoque" value="50" >
                     <label class="form-check-label" for="retoque">
                         Retoque profesional (+ 50 €)
                     </label>
@@ -111,11 +122,43 @@
             <div class="mb-3">
                 <p>Total estimado: <strong id="resultado">0 €</strong></p>
             </div>
+
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-envelope-fill me-2"></i>
+                <span>Solicitar</span>
+            </button>
+
         </form>
     </section>
 
-    <footer class="container py-4 text-center">
-        <p>&copy; 2025 Mi Portfolio de Fotografía</p>
+    <footer class="py-4">
+      <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+        <!-- Logo -->
+        <a href="../index.html" class="mb-3 mb-md-0">
+          <img src="/img/logo.png" alt="Logo" id="logo-footer">
+        </a>
+
+        <!-- Iconos Sociales -->
+        <div class="mb-3 mb-md-0">
+          <a href="https://instagram.com/" class="mx-2 fs-4">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="https://facebook.com/" class="mx-2 fs-4">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a href="https://twitter.com/" class="mx-2 fs-4">
+            <i class="bi bi-twitter"></i>
+          </a>
+          <a href="https://linkedin.com/" class="mx-2 fs-4">
+            <i class="bi bi-linkedin"></i>
+          </a>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-secondary small">
+          &copy; 2025 The Photo Booth
+        </div>
+      </div>
     </footer>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
