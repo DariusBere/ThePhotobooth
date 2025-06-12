@@ -19,102 +19,109 @@ document.addEventListener('DOMContentLoaded', () => {
     const regexTelefono = /^\d{1,9}$/;
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    // Funcion de validacion
-    function validar(input, regex) {
-        if (!regex.test(input.value.trim())) {
-            input.classList.add('is-invalid');
-            return false;
-        }
-        input.classList.remove('is-invalid');
-        return true;
-    }
+    //Funcion que calcula precio y descuento en tiempo real
+    function calcularPrecio() {
 
-    function validarYCalcular() {
-        let valido = true;
+        const precioBase = tipoSesion.value ? parseFloat(tipoSesion.selectedOptions[0].dataset.precio) : 0;
 
-
-        //Datos de contacto
-        valido &= validar(nombre, regexNombre);
-        valido &= validar(apellidos, regexApellidos);
-        valido &= validar(telefono, regexTelefono);
-        valido &= validar(email, regexEmail);
-
-
-        //Tipo de sesion
-        if(!tipoSesion.value) {
-            tipoSesion.classList.add('is-invalid');
-            valido = false;    
-        } else {
-            tipoSesion.classList.remove('is-invalid');
+        // Horas
+        const horas = parseInt(duracion.value.trim(), 10);
+        let total = precioBase;
+        if (!isNaN(horas) && horas >= 1) {
+            total += (horas - 1) * 20;
         }
 
-        // Duracion
-        const horas = parseInt(duracion.value, 10);
-        if (isNaN(horas) || horas < 1) {
-            duracion.classList.add('is-invalid');
-            valido = false;
-        } else {
-            duracion.classList.remove('is-invalid');
+        // Retoque profesional
+        if (retoqueChk.checked) {
+            total += parseFloat(retoqueChk.value);
         }
 
         // Revisiones
-        const numeroRevisiones = parseInt(revisiones.value, 10);
-        if (isNaN(numeroRevisiones) || numeroRevisiones < 0 || numeroRevisiones > 3) {
-            revisiones.classList.add('is-invalid');
-            valido = false;
-        } else {
-            revisiones.classList.remove('is-invalid');
+        const numeroRevisiones = parseInt(revisiones.value.trim(), 10);
+        if (!isNaN(numeroRevisiones) && numeroRevisiones > 0) {
+            total += numeroRevisiones * 20;
         }
 
-        // Si alguno es invalido, ocultar desceunto y poner total a 0
-        if(!valido) {
-            descContainer.style.display = 'none';
-            resultado.textContent = '0 €';
-            return;
-        }
-
-        // Calcular preico base y extras
-        const precioBase = parseFloat(tipoSesion.selectedOptions[0].dataset.precio);
-        let total = precioBase;
-        total += (horas - 1) * 20;              // 20 € por hora extra
-        if (retoqueChk.checked) total += 50;    // retoque profesional 
-        total += numeroRevisiones * 20;         // 20 € por revision
-
-        // Calcular descuento de 5% por cada bloque de 5 horas completas
-        const bloques = Math.floor(horas / 5);
-        if (bloques > 0) {
-            const descuento = precioBase * (0.05 * bloques);
-            total -= descuento;
-            descuentoHoras.textContent = descuento.toFixed(2) + ' €';
+        // Descuento: 5% del precio base por cada bloque de 5 horas completas
+        if (!isNaN(horas) && horas >= 5) {
+            const bloques = Math.floor(horas/5);
+            const descuentoVal = precioBase * (0.05 * bloques);
             descContainer.style.display = 'block';
+            descuentoHoras.textContent = descuentoVal.toFixed(2) + ' €';
+            total -= descuentoVal;
         } else {
             descContainer.style.display = 'none';
+            descuentoHoras.textContent = '';
         }
 
+        // Mostrar total
         resultado.textContent = total.toFixed(2) + ' €';
     }
 
-    // Eventos en tiempo real
-    [nombre, apellidos, telefono, email].forEach(element => element.addEventListener('input', validarYCalcular));
-    [tipoSesion, duracion, retoqueChk, revisiones].forEach(element => element.addEventListener('change', validarYCalcular));
+    // EventListener para recalcular el precio al cambiar datos de precio y extras
+    [tipoSesion, duracion, retoqueChk, revisiones].forEach(elemento => elemento.addEventListener('input', calcularPrecio));
 
-    /*
-    // Boton Submit. Despues de enviar el mailto, hacemos reset del formulario
-    form.addEventListener('submit', e => {
-        // validaciones
-        if(!validarYCalcular() || !condCheck.checked) {
-            if(!condCheck.checked) condCheck.classList.add('is-invalid');
-            e.preventDefault ();
+    // Calculo inicial
+    calcularPrecio();
+
+
+    // Manejador de envio: validar solo al pulsar submit
+    form.addEventListener('submit', eventoSubmit => {
+        [nombre, apellidos, telefono, email, tipoSesion, duracion, revisiones, condCheck].forEach(elemento => 
+            elemento.classList.remove('is-invalid')
+        );
+
+        let valido = true;
+
+        // Validacion de cada campo
+        if (!regexNombre.test(nombre.value.trim())) {
+            nombre.classList.add('is-invalid');
+            valido = false;
+        } 
+
+        if (!regexApellidos.test(apellidos.value.trim())) {
+            apellidos.classList.add('is-invalid');
+            valido = false;
+        }
+
+        if (!regexTelefono.test(telefono.value.trim())) {
+            telefono.classList.add('is-invalid');
+            valido = false;
+        }
+
+        if (!regexEmail.test(email.value.trim())) {
+            email.classList.add('is-invalid');
+            valido = false;
+        }
+
+        const numeroHoras = parseInt(duracion.value.trim(), 10);
+        if (isNaN(numeroHoras) || numeroHoras < 1) {
+            duracion.classList.add('is-invalid');
+            valido = false;
+        }
+
+        const numeroRevisiones = parseInt(revisiones.value.trim(), 10);
+        if (isNaN(numeroRevisiones) || numeroRevisiones < 0 || numeroRevisiones > 3) {
+            revisiones.classList.add('is-invalid');
+            valido = false;
+        }
+
+        if (!condCheck.checked) {
+            condCheck.classList.add('is-invalid');
+            valido = false;
+        }
+
+        if (!valido) {
+            // Evita envio si hay errores
+            eventoSubmit.preventDefault();
             return;
         }
-        // tras enviar mailto, restear el formulario
+
+        // Si es valido, permitir mailto: y luego resetear
         setTimeout(() => {
             form.reset();
-            validarYCalcular();
-            condCheck.classList.remove('is-invalid');
+            calcularPrecio();
         }, 100);
     });
-*/
-    // Calculo inicial
-    validarYCalcular();
 });
+

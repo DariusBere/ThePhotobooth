@@ -19,6 +19,12 @@
     <!--Bootstrap Icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" >
+
+    <!-- Leaflet Routing Machine CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css">
+
     <!-- CSS -->
     <link href="../css/style.css" rel="stylesheet">
 
@@ -26,36 +32,35 @@
 <body>
 
     <header>
-            <!-- Navegacion -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="../index.html">
-                    <img src="../img/logo.png" alt="Logo" id="logo-header">
-                    <span>The Photo Booth</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navMenu" aria-controls="navMenu"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navMenu">
+        <!-- Navegacion -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../img/logo.png" alt="Logo" id="logo-header">
+                <span>The Photo Booth</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navMenu" aria-controls="navMenu"
+                    aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="galeria.html">Galería</a></li>
                     <li class="nav-item"><a class="nav-link" href="presupuesto.html">Presupuesto</a></li>
                     <li class="nav-item"><a class="nav-link active" href="#">Contacto</a></li>
                 </ul>
-                </div>
-            </nav>
-        </header>
+            </div>
+        </nav>
+    </header>
 
     <!-- Seccion contacto -->
     <section id="contacto" class="container my-5">
         <h2 class="text-center mb-4">Contacto</h2>
-        <div class="row justify-content-center align-items-center">
+        <div class="row justify-content-center">
             <!-- Mapa -->
-            <div class="col-lg-6 mb-4">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d240.5329177453755!2d-1.1472292810649094!3d37.998509701617955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63819233c88235%3A0x2edebaf116eb6364!2sAv.%20Reyes%20Cat%C3%B3licos%2C%2036%2C%2030009%20Murcia!5e0!3m2!1sen!2ses!4v1749665275476!5m2!1sen!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            
+            <div class="col-lg-10 mb-4">
+                <div id="map"></div>
             <!-- Datos de contacto -->
                 <h5 class="my-3">Encuéntrame en</h5>
                 <p><strong>Dirección:</strong>  Av. Reyes Católicos, 36, 30009 Murcia, España</p>
@@ -70,7 +75,7 @@
         </div>
     </section>
 
-    
+
     <footer class="py-4">
         <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
         <!-- Logo -->
@@ -94,7 +99,15 @@
     </footer>
 
     <!-- Boostrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.4.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+
+    <!-- Leaflet Rounting Machine JS -->
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+    <script src="../js/contacto.js"></script>
 
 </body>
 </html>
